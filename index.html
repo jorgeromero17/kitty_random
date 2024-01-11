@@ -12,7 +12,7 @@
 </head>
 <body>
     <h1>Kitty Random</h1>
-    <main>
+    <section>
         <div class="container">
             <img class="frame" src="assets/frame.svg" alt="">
             <div class="catImage"></div>
@@ -20,11 +20,14 @@
             <img class="tape1" src="assets/tape1.svg" alt="">
             <img class="tape2" src="assets/tape2.svg" alt="">
         </div>
-        <button class="btn"></button>
-    </main>
-    <div class="fullscreenImage">
-        <img class="catImageFullScreen" alt="">
-    </div>
+        <div class="btn-container">
+            <button class="btn" id="refreshCat"></button>
+            <button class="btn" id="newFavoriteCat"></button>
+        </div>
+    </section>
+    <section id="favs">
+        <h2>Favorites</h2>
+    </section>
     <script src="main.js"></script>
 </body>
 </html>

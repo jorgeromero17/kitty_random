@@ -1,3 +1,13 @@
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+html {
+	box-sizing: border-box;
+}
+
 body {
 	background-color: #8763e0;
 	background-image: url("https://www.transparenttextures.com/patterns/asfalt-light.png");
@@ -12,9 +22,26 @@ h1{
 	color: antiquewhite;
 }
 
+h2{
+	text-align: center;
+	font-size: 65px;
+	margin: 0px 0px 10px;
+	font-weight: bold;
+	color: antiquewhite;
+}
+
+p{
+	text-align: center;
+	font-size: 25px;
+	color: antiquewhite;
+	width: 100%;
+	display: block;
+	margin: 0;
+}
+
 .frame{
   width: 100%;
-	height: auto;
+  height: auto;
 }
 
 .container{
@@ -128,6 +155,31 @@ h1{
 	width: auto;
 }
 
+#favs {
+	margin-top: 60px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;	
+}
+
+.masonry { 
+	column-count: 3;
+	column-gap: 1em;
+	row-gap: 1em;
+	max-width: 1200px;
+	margin: 0 auto;
+  }
+  
+  .item { 
+	background-color:antiquewhite;
+	display: inline-block;
+	margin: 0 0 1em;
+	width: 100%;
+	border-radius: 2px;
+	border: 8px solid antiquewhite;
+  }
+
 @-webkit-keyframes rotate-scale-up {
   0% {
     -webkit-transform: rotateZ(0);
@@ -147,6 +199,12 @@ h1{
     -webkit-transform: rotateZ(180deg);
             transform: rotateZ(180deg);
   }
+}
+
+@media (max-width: 1300px) {
+	.masonry { 
+		width: 90%;
+	}
 }
 
 @media (max-width: 800px) {
@@ -170,7 +228,26 @@ h1{
 		width: 65px;
 		height: 60px;
 	}
+
+	.item { 
+		border-radius: 2px;
+		border: 5px solid antiquewhite;
+	}
+
+	.masonry { 
+		width: 95%;
+	}
+
+	h2{
+		font-size: 55px;
+	}
 	
+}
+
+@media (max-width:700px) {
+	.masonry {
+		column-count: 2;
+	  }
 }
 
 @media (max-width: 600px) {
@@ -185,6 +262,10 @@ h1{
 		width: 55px;
 		height: 50px;
 	}
+
+	p{
+		font-size: 22px;
+	}
 }
 
 @media (max-width: 500px) {
@@ -194,10 +275,19 @@ h1{
 		margin: 20px 0px 40px;
 	}
 
+	h2{
+		font-size: 50px;
+		margin: 0px 0px 20px;
+	}
+
 	.btn {
 		display: block;
 		width: 45px;
 		height: 40px;
 	}
-}
 
+	p{
+		font-size: 20px;
+	}
+
+}

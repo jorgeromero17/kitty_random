@@ -20,19 +20,6 @@ async function getCat(){
 	return cat;
 }
 
-async function getFavs(){
-	const response = await fetch(URL+`favourites?limit=9&sub_id=${user}&order=DESC`,{
-    headers:{
-      "content-type":"application/json",
-      'x-api-key': APIkey,
-    }
-  });
-	
-  const favs = await response.json();
-
-  return favs;
-}
-
 async function setFav(){
   const rawBody = JSON.stringify({ 
     "image_id":currentCat,
@@ -53,6 +40,34 @@ async function setFav(){
   showFavoritesCats();
 }
 
+async function getFavs(){
+	const response = await fetch(URL+`favourites?sub_id=${user}&order=DESC`,{
+    headers:{
+      "content-type":"application/json",
+      'x-api-key': APIkey,
+    }
+  });
+	
+  const favs = await response.json();
+
+  return favs;
+}
+
+async function RemoveFav(id){
+  const response = await fetch(URL+`favourites/${id}`, {
+    method:'DELETE',
+    headers:{
+      "content-type":"application/json",
+      'x-api-key': APIkey,
+    }
+  });
+
+  const deleted = await response.json();
+  console.log(deleted);
+  showFavoritesCats();
+}
+
+
 async function showCat(){
 	const cat = await getCat();
   currentCat = cat[0].id;
@@ -68,7 +83,7 @@ function clearSectionFavs(sectionFavs,gallery) {
   }
 
   // Eliminar imágenes existentes
-  const existingImages = gallery.querySelectorAll('img');
+  const existingImages = gallery.querySelectorAll('.itemContainer');
   existingImages.forEach(img => {
     gallery.removeChild(img);
   });
@@ -76,7 +91,6 @@ function clearSectionFavs(sectionFavs,gallery) {
 
 async function showFavoritesCats(){
   const cats = await getFavs();
-  
   console.log(cats);
   const gallery = document.querySelector('#gallery');
   const sectionFavs = document.querySelector('#favs');
@@ -85,11 +99,20 @@ async function showFavoritesCats(){
 
   if(cats.length>0){
     cats.forEach(cat => {
-      const img = document.createElement('img');
-      img.src = cat.image.url;
-      img.classList.add('item');
-      
-      gallery.appendChild(img);
+      const div = document.createElement('div');
+      const imgFav = document.createElement('img');
+      const button = document.createElement('button');
+            
+      div.classList.add('itemContainer');
+      imgFav.classList.add('item');
+      button.classList.add('removeButton');
+
+      imgFav.src = cat.image.url;
+      button.onclick = () => RemoveFav(cat.id);
+
+      div.appendChild(imgFav);
+      div.appendChild(button);
+      gallery.appendChild(div);
     });
   } else {
     const p = document.createElement('p');
@@ -106,8 +129,6 @@ function main() {
     localStorage.setItem('user',generateUID());
     user = localStorage.getItem('user');
   }
-
-  console.log(user);
 }
 
 function handleClickShowCat(){

@@ -160,7 +160,7 @@ p{
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	align-items: center;	
+	align-items: center;
 }
 
 .masonry { 
@@ -174,10 +174,31 @@ p{
   .item { 
 	background-color:antiquewhite;
 	display: inline-block;
-	margin: 0 0 1em;
 	width: 100%;
 	border-radius: 2px;
 	border: 8px solid antiquewhite;
+	box-shadow: 0px 0px 15px 6px rgba(0,0,0,0.1);
+  }
+
+  .itemContainer {
+	position: relative;
+	height: auto;
+	margin: 0 0 1em;
+  }
+
+  .removeButton {
+	position: absolute;
+	right: 0;
+	width: 30px;
+	height: 30px;
+	background-repeat: no-repeat;
+	background-size:contain;
+	background-position: center;
+	background-image: url('assets/button-remove-icon.svg');
+	background-color: antiquewhite;
+	border-radius: 3px;
+	border: none;
+	cursor: pointer;
   }
 
 @-webkit-keyframes rotate-scale-up {

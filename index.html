@@ -8,11 +8,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/1ca1444e32.js" crossorigin="anonymous"></script>
     <title>Kitty Random</title>
 </head>
 <body>
     <h1>Kitty Random</h1>
-    <section>
+    <main>
         <div class="container">
             <img class="frame" src="assets/frame.svg" alt="">
             <div class="catImage"></div>
@@ -21,15 +22,53 @@
             <img class="tape2" src="assets/tape2.svg" alt="">
         </div>
         <div class="btn-container">
-            <button class="btn" id="refreshCat"></button>
-            <button class="btn" id="newFavoriteCat"></button>
+            <button class="btn" id="refreshCat">
+                <i class="fa-solid fa-arrows-rotate"></i>
+            </button>
+            <button class="btn" id="newFavoriteCat">
+                <i class="fa-solid fa-heart"></i>
+            </button>
+        </div>
+    </main>
+    <section>
+        <h2>Contribute to the Kitty Cuteness</h2>
+        <form id="uploadingForm">
+            <p>Let's keep it pawsitively cute and upload only kitty pics.</p>
+            <div id="uploadingImgCat">
+                <button type="button" class="removeButton" id="removeContribution">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+                <div id="spinnerUploadCat">
+                    <i class="fa-solid fa-arrows-rotate"></i>
+                </div>
+            </div>
+            <label class="btn customFile">
+                <i class="fa-solid fa-folder-open"></i>
+                <input id="fileCat" type="file" name="file" accept="image/*"  multiple="false">
+            </label>
+            <button class="btn" id="uploadCat" type="button">
+                <i class="fa-solid fa-paper-plane"></i>
+            </button>
+        </form>
+    </section>
+    <section class="tabs">
+        <input type="radio" name="tabs" id="tabone" checked="checked">
+        <label for="tabone">My Favorites</label>
+        <div class="tab" id="favs">
+            <h3>My Favorites</h3>
+            <div class="masonry" id="favoritesGallery">
+            </div>
+        </div>
+        <input type="radio" name="tabs" id="tabtwo" checked="checked">
+        <label for="tabtwo">My Contributions</label>
+        <div class="tab" id="conts">
+            <h3>My Contributions</h3>
+            <div class="masonry" id="contributionGallery">
+            </div>
         </div>
     </section>
-    <section id="favs">
-        <h2>My Favorites</h2>
-        <div class="masonry" id="gallery">
-        </div>
-    </section>
+    
+    
     <script src="main.js"></script>
 </body>
 </html>

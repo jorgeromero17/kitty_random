@@ -175,18 +175,6 @@ h3{
 	margin: 0 auto;
 }
 
-/* #spinnerFavorites, #spinnerContributions {
-	text-align: center;
-	display: none;
-	margin: 0 auto;
-	font-size: 40px;
-	color: #442a9b5e;
-	animation-name: loading;
-	animation-duration: 1s;
-	animation-iteration-count: infinite;
-	animation-timing-function: ease-out;
-} */
-  
 .item { 
 	background-color:antiquewhite;
 	display: inline-block;

@@ -110,6 +110,7 @@ async function uploadCat(){
   } catch (error) {
     console.error('Error al subir la imagen:', error);
   } finally {
+    spinnerUploadCat.style.display = 'none';
     handleRemoveContribution();
     showUploadedCats();
   }
@@ -211,7 +212,7 @@ async function showUploadedCats(){
 function main() {
 	showCat();
   showFavoritesCats();
-  //showUploadedCats();
+  showUploadedCats();
 
   if(!user){
     localStorage.setItem('user',generateUID());

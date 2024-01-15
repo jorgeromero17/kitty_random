@@ -173,6 +173,20 @@ h3{
 	row-gap: 1em;
 	width: 100%;
 	margin: 0 auto;
+
+	animation-name: opacityanimation ;
+	animation-duration: 400ms;
+	animation-timing-function: ease-out;
+}
+
+@keyframes opacityanimation {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
 }
 
 .item { 
@@ -264,6 +278,22 @@ h3{
    
 .tabs input[type="radio"]:checked + label + .tab {
 	display: block;
+}
+
+.tab > h3 {
+	animation-name: animation ;
+	animation-duration: 200ms;
+	animation-timing-function: ease-out;
+}
+
+@keyframes animation {
+	from {
+		scale: 1.05;
+	}
+
+	to {
+		scale: 1;
+	}
 }
 
 input[type="file"] {

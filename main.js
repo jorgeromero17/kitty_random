@@ -7,8 +7,11 @@ const spinnerUploadCat = document.querySelector('#spinnerUploadCat');
 const btnRemoveContribution = document.querySelector('#removeContribution');
 const inputFile = document.querySelector('input');
 const catImage = document.querySelector('.catImage');
+let breeds;
 let user = localStorage.getItem('user');
 let currentCat;
+let currentIndex = 0;
+let imagesSlider = '';
 
 function generateUID(){
   const randomNum = Math.random().toString(36).substring(2);
@@ -22,6 +25,30 @@ async function getCat(){
 	const response = await fetch(URL+'images/search');
 	const cat = await response.json();
 	return cat;
+}
+
+async function getBreeds(){
+  try {
+    const select = document.querySelector('#searchBreed');
+    
+    const response = await fetch(URL+'breeds');
+    breeds = await response.json();
+    
+    console.log(breeds)
+    
+    breeds.forEach(breed => {
+      const {id,name} = breed;
+      const option = document.createElement('option');
+      option.value =  id;
+      option.innerHTML = name;
+      select.appendChild(option);
+    });
+    
+  } catch (error) {
+    console.log(error)
+  } finally {
+    searchSelectedBreed('abys');
+  }
 }
 
 async function setFav(){
@@ -86,7 +113,6 @@ async function removeUploadedCat(id){
     showUploadedCats();
   }
 }
-
 
 async function uploadCat(){
   const form = document.querySelector('#uploadingForm');
@@ -209,10 +235,97 @@ async function showUploadedCats(){
   renderCats(section,gallery,cats,"No uploaded kitties found. Begin adding your purr-sonal touch!",false);
 }
 
+function addButtonsSlider(){
+  imagesSlider = document.querySelectorAll('.breedImage');
+  const buttonsHTML = `
+      <div class="buttonsBreedGallery">
+          <button onclick="prevImage()"><i class="fa-solid fa-caret-left"></i></button>
+          <button onclick="nextImage()"><i class="fa-solid fa-caret-right"></i></button>
+      </div>
+  `;
+
+  imagesSlider.forEach( image => image.innerHTML = buttonsHTML);
+}
+
+function showImageSlider(index){
+  imagesSlider.forEach((image, i) => {
+    if (i === index) {
+        image.classList.add('active');
+    } else {
+        image.classList.remove('active');
+    }
+});
+}
+
+async function showBreedInformation({
+  id, 
+  name, 
+  origin, 
+  description,
+  adaptability,
+  affection_level,
+  energy_level,
+  intelligence,}) {
+    const breedGallery = document.querySelector('#breedGallery');
+    const breedDescription = document.querySelector('#breedDescription');
+    const breedName = document.querySelector('#breedName');
+    const traitsContainer = document.querySelector('.traitsContainer');
+
+    let imagesElements = '';
+    const traitNames = ['Adaptability', 'Affection Level', 'Energy Level', 'Intelligence'];
+    const traits = [adaptability,affection_level,energy_level,intelligence];
+    let traitsElements = '';
+
+    const response = await fetch(URL+`images/search?limit=4&breed_ids=${id}`);
+    const cats = await response.json();
+    console.log(cats);
+
+    cats.forEach(cat => {
+      imagesElements += `<div class="breedImage" style="background-image: url('${cat.url}');"></div>`;
+    });
+
+    traits.forEach((trait, index) => {
+      const width = (parseInt(trait) * 20) + '%';
+      traitsElements += `<div class="breedTrait"><label>${traitNames[index]}</label><div><label class="traitLevel" style="width:${width}" ></label></div></div>`;
+    });
+
+    breedGallery.innerHTML = imagesElements;
+    breedName.innerHTML = `${name}<i id="breedOrigin">(${origin})</i>`;
+    breedDescription.innerText = description;
+    traitsContainer.innerHTML = traitsElements;
+    addButtonsSlider();
+    showImageSlider(currentIndex);
+}
+
+function searchSelectedBreed(value){
+  const selectedBreed = breeds.filter( (breed) => breed.id === value);
+
+  const {
+    id, 
+    name, 
+    origin, 
+    description,
+    adaptability,
+    affection_level,
+    energy_level,
+    intelligence,} = selectedBreed[0];
+
+  showBreedInformation({
+    id, 
+    name, 
+    origin, 
+    description,
+    adaptability,
+    affection_level,
+    energy_level,
+    intelligence,});
+}
+
 function main() {
 	showCat();
   showFavoritesCats();
   showUploadedCats();
+  getBreeds();
 
   if(!user){
     localStorage.setItem('user',generateUID());
@@ -264,6 +377,23 @@ function handleRemoveContribution() {
 
   parent.style.display = "flex";
   inputFile.value = "";
+}
+
+function handleSelectChange() {
+  const select = document.getElementById('searchBreed');
+  const value = select.value;
+
+  searchSelectedBreed(value);
+}
+
+function nextImage() {
+  currentIndex = (currentIndex + 1) % imagesSlider.length;
+  showImageSlider(currentIndex);
+}
+
+function prevImage() {
+  currentIndex = (currentIndex - 1 + imagesSlider.length) % imagesSlider.length;
+  showImageSlider(currentIndex);
 }
 
 btnRefreshCat.addEventListener('click',handleClickShowCat);

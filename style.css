@@ -19,14 +19,14 @@ h1{
 	font-size: 75px;
 	margin: 20px 0px 10px;
 	font-weight: bold;
-	color: antiquewhite;
+	color: white;
 }
 
 h2 {
 	text-align: center;
 	font-size: 55px;
 	margin: 45px 0px 0px 0px;
-	color: antiquewhite;
+	color: white;
 }
 
 h3{
@@ -79,7 +79,7 @@ h3{
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center;
-	background-color: antiquewhite;
+	background-color: #fdd3f3;
 }
 
 .btn-container {
@@ -100,7 +100,7 @@ h3{
 	background-repeat: no-repeat;
 	background-size:contain;
 	background-position: center;
-	background-color: antiquewhite;
+	background-color: white;
 	border-radius: 10px;
 	box-shadow: -4px 3px 9px -1px rgba(0,0,0,0.2);
 	-webkit-box-shadow: -4px 3px 9px -1px rgba(0,0,0,0.2);
@@ -176,11 +176,11 @@ h3{
 }
 
 .item { 
-	background-color:antiquewhite;
+	background-color:#fdd3f3;
 	display: inline-block;
 	width: 100%;
 	border-radius: 2px;
-	border: 8px solid white;
+	border: 8px solid #fdd3f3;
 	box-shadow: 0px 0px 15px 6px rgba(0,0,0,0.1);
 }
 
@@ -205,7 +205,7 @@ h3{
 	border-radius: 3px;
 	border: none;
 	cursor: pointer;
-	background-color: white;
+	background-color: #fdd3f3;
 }
 
 .removeButton i {
@@ -228,7 +228,7 @@ h3{
 	padding: 1rem 2rem;
 	margin-right: 0.2rem;
 	cursor: pointer;
-	background-color: #d4d4d4;
+	background-color: #e0e0e0;
 	color: #452a9b;
 	font-weight: bold;
 }
@@ -240,7 +240,7 @@ h3{
 	height: 100%;
 	display: none;
 	padding: 1rem;
-	background: #ebebeb;
+	background: white;
 	padding: 20px;
 	box-shadow: 0px 25px 10px 4px rgba(0,0,0,0.1);
 	border-radius: 0px 8px 8px 8px;
@@ -252,10 +252,13 @@ h3{
 
 .tabs input[type="radio"] + label {
 	border-radius: 8px 8px 0px 0px;
+
+	/* property name | duration | easing function | delay */
+	transition: background, color 200ms ease-in-out 0ms;
 }
    
 .tabs input[type="radio"]:checked + label {
-	background: #ebebeb; 
+	background: white; 
 	color: #8763e0;
  }
    
@@ -284,7 +287,7 @@ input[type="file"] {
 
 #uploadingForm > p {
 	text-align: center;
-	color: antiquewhite;
+	color: white;
 	font-weight: bold;
 	font-size: 22px;
 	margin: 10px 0 0 0;
@@ -300,7 +303,7 @@ input[type="file"] {
 	width: 250px;
 	height: 250px;
 	border-radius: 2px;
-	border: 8px solid white;
+	border: 8px solid #fdd3f3;
 	box-shadow: 0px 0px 15px 6px rgba(0,0,0,0.1);
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -324,6 +327,100 @@ input[type="file"] {
 	animation-duration: 1s;
 	animation-iteration-count: infinite;
 	animation-timing-function: ease-out;
+}
+
+#breedsSection{
+	margin: 0 auto;
+	width: 80%;
+  	max-width: 800px;
+	height: auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+#searchBreed {
+	width: 100%;
+	height: 40px;
+	color: #8763e0;
+	background-color: #ffe0f8;
+	border: solid 1px #fdd3f3;
+	border-radius: 4px;
+	padding: 0px 20px;	
+	font-size: 17px;
+}
+
+#breedsCard{
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	/*border: solid 2px #fdd3f3;*/
+	background-color: white;
+	border-radius: 10px;
+	padding: 20px 40px;
+	margin: 20px 0 0 0;
+	box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.1);
+}
+
+#breedName{
+	color:#8763e0;
+	font-weight: bold;
+	font-size: 28px;
+	margin: 10px 0px 10px 0px;
+}
+
+#breedOrigin {
+	font-style: italic;
+	font-size: 20px;
+	margin-left: 8px;
+	color: #9071e0;
+}
+
+#breedDescription {
+	color:#8763e0;
+	font-size: 18px;
+	margin: 0px 0 15px 0;
+}
+
+.breedTrait{
+	margin: 0px 0px 10px 0px;
+}
+
+.breedTrait label {
+	display: block;
+	color: #8763e0;
+	font-weight: bold;
+	font-size: 18px;
+	margin: 0 0 5px 0;
+}
+
+.breedTrait div {
+	width: 100%;
+	height: 8px;
+	background-color: #c5b0fa;
+	border-radius: 5px;
+}
+
+.traitLevel {
+	display: block;
+	/* width: 50%; */
+	height: 100%;
+	background-color: #8763e0;
+	border-radius: 5px;
+
+	animation-name: active-efect;
+	animation-duration: 250ms;
+	animation-timing-function: cubic-bezier(.68,-0.55,.27,1.55);
+}
+
+@keyframes active-efect {
+    from {
+        scale: 0.8;
+    }
+	to {
+		scale: 1;
+	}
 }
 
 @keyframes loading {
@@ -393,6 +490,29 @@ input[type="file"] {
 		padding: .5rem 1rem;
 	}
 	
+	#breedsSection{
+		width: 90%;
+	}
+	
+	#breedsCard{
+		padding: 20px 30px;
+	}
+	
+	#breedName{
+		font-size: 24px;
+	}
+	
+	#breedOrigin {
+		font-size: 18px;
+	}
+	
+	#breedDescription {
+		font-size: 18px;
+	}
+	
+	.breedTrait label {
+		font-size: 18px;
+	}
 	
 }
 
@@ -442,6 +562,30 @@ input[type="file"] {
 
 	.removeButton i {
 		font-size: 22px;
+	}
+
+	#searchBreed {
+		font-size: 16px;
+	}
+	
+	#breedsCard{
+		padding: 20px 30px;
+	}
+	
+	#breedName{
+		font-size: 22px;
+	}
+	
+	#breedOrigin {
+		font-size: 17px;
+	}
+	
+	#breedDescription {
+		font-size: 16px;
+	}
+	
+	.breedTrait label {
+		font-size: 17px;
 	}
 
 }

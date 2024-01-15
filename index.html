@@ -4,11 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="slider.css">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/1ca1444e32.js" crossorigin="anonymous"></script>
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
     <title>Kitty Random</title>
 </head>
 <body>
@@ -30,6 +33,18 @@
             </button>
         </div>
     </main>
+    <section id="breedsSection">
+        <h2>Kitty Breeds Encyclopedia</h2>
+        <div id="breedsCard">
+            <select id="searchBreed" onchange="handleSelectChange()"></select>
+            <div id="breedGallery">
+            </div>
+            <div id="breedName"></div>
+            <p id="breedDescription"></p>
+            <div class="traitsContainer">
+            </div>
+        </div>        
+    </section>
     <section>
         <h2>Contribute to the Kitty Cuteness</h2>
         <form id="uploadingForm">

@@ -574,7 +574,7 @@ input[type="file"] {
 	}
 
 	.item { 
-		border: 6px solid white;
+		border: 6px solid #fdd3f3;
 	}	
 
 	.itemContainer {
